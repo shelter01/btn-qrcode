@@ -1,9 +1,31 @@
 {
-  "name": "btn-qrcode",
+  "name": "@gdyfe/btn-qrcode",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/btnqrcode.js",
   "license": "MIT",
+  "author": "shelter01 <824586637@qq.com>",
+  "description": "hover按钮预览二维码",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shelter01/btn-qrcode.git"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
   "dependencies": {
     "qrcode": "^1.4.4"
-  }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.0",
+    "style-loader": "^2.0.0",
+    "webpack": "5.15.0",
+    "webpack-cli": "4.4.0"
+  },
+  "keywords": [
+    "javascript",
+    "qrcode"
+  ]
 }

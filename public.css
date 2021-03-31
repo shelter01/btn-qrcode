@@ -1,0 +1,55 @@
+.qr-pre-box {
+  position: relative;
+}
+
+.qr-pre-btn {
+  display: inline-block;
+  background-color: #4ac3bd;
+  border: 2px solid #4ac3bd;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  height: 28px;
+  padding: 0 12px 0;
+  font-size: 14px;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+
+.qr-pre-img {
+  display: none;
+  position: absolute;
+  padding: 10px 0 7px 0;
+  top: 25px;
+  left: 0;
+  z-index: 100;
+  box-sizing: border-box;
+  animation: show 1s;
+}
+
+.qr-pre-img-pic {
+  padding: 8px 16px;
+  box-shadow: 0 0 10px rgb(117, 117, 117);
+}
+
+.qr-pre-img-triangle {
+  position: absolute;
+  top: 2px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
