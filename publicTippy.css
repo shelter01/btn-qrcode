@@ -1,0 +1,15 @@
+#myButton {
+  display: inline-block;
+  background-color: #4ac3bd;
+  border: 2px solid #4ac3bd;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  height: 28px;
+  padding: 0 12px 0;
+  font-size: 14px;
+  border-radius: 4px;
+  line-height: 1.5;
+}

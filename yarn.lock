@@ -836,6 +836,20 @@
   resolved "https://registry.npm.taobao.org/@discoveryjs/json-ext/download/@discoveryjs/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"
   integrity sha1-jwOiKgTeQ3JU6M6MyEujlokoh1I=
 
+"@gdyfe/btn-qrcode@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@gdyfe/btn-qrcode/-/btn-qrcode-1.0.1.tgz#e1c3c7a23c4cd828809b395a16816755f600bc7d"
+  integrity sha512-hGiCxGew5sM2J4CByVsG1qSlxVbbdjPYFURIfylJx9EhBZ/qQfNdTIaxD6qBuQ4Ahk0L9LxGYD5Qj8eFjv+emQ==
+  dependencies:
+    "@popperjs/core" "^2.9.1"
+    qrcode "^1.4.4"
+    tippy.js "^6.3.1"
+
+"@popperjs/core@^2.8.3", "@popperjs/core@^2.9.1":
+  version "2.9.1"
+  resolved "https://registry.npm.taobao.org/@popperjs/core/download/@popperjs/core-2.9.1.tgz#7f554e7368c9ab679a11f4a042ca17149d70cf12"
+  integrity sha1-f1VOc2jJq2eaEfSgQsoXFJ1wzxI=
+
 "@types/eslint-scope@^3.7.0":
   version "3.7.0"
   resolved "https://registry.npm.taobao.org/@types/eslint-scope/download/@types/eslint-scope-3.7.0.tgz#4792816e31119ebd506902a482caec4951fabd86"
@@ -2211,6 +2225,13 @@ terser@^5.5.1:
     commander "^2.20.0"
     source-map "~0.7.2"
     source-map-support "~0.5.19"
+
+tippy.js@^6.3.1:
+  version "6.3.1"
+  resolved "https://registry.npm.taobao.org/tippy.js/download/tippy.js-6.3.1.tgz#3788a007be7015eee0fd589a66b98fb3f8f10181"
+  integrity sha1-N4igB75wFe7g/ViaZrmPs/jxAYE=
+  dependencies:
+    "@popperjs/core" "^2.8.3"
 
 to-fast-properties@^2.0.0:
   version "2.0.0"
