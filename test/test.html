@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    #test {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  </style>
-  <!-- <script src="../node_modules/@gdyfe/btn-qrcode/dist/btnqrcode.js"></script> -->
-  <script src="../dist/btnqrcode.js"></script>
-</head>
-<body>
-  <div id="test"></div>
-  <script>
-    var  btn = new BtnQRCode('test', { imgUrl: 'https://www.baidu.com', openText: '打开链接' })
-    // var  btn = new BtnQRCode('test', { imgUrl: 'https://www.baidu.com'})
-    btn.init()
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #test {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .tippy-box .tippy-content {
+        padding: 9px;
+      }
+    </style>
+    <!-- <script src="../node_modules/@gdyfe/btn-qrcode/dist/btnqrcode.js"></script> -->
+    <!-- <script src="../dist/btnqrcode.js"></script> -->
+  </head>
+  <body>
+    <div id="test"></div>
+    <script type="module">
+      // import '../node_modules/@gdyfe/btn-qrcode/dist/btnqrcode.js'
+      import '../dist/btnqrcode.js'
+      // import BtnQRCode from '@gdyfe/btn-qrcode'
+      var btn = new BtnQRCode('test', {
+        url: 'https://www.baidu.com',
+        text: [
+          ['打开', 'https://www.baidu.com'],
+          ['链接', 'https://www.baidu.com'],
+        ],
+      })
+      btn.init()
+    </script>
+  </body>
 </html>

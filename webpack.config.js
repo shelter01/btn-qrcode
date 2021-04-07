@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  entry: './indexTippy.js',
+  entry: './index.js',
   mode: 'development',
   target: ['web', 'es5'],
   output: {

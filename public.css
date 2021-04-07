@@ -1,11 +1,7 @@
-.qr-pre-box {
-  position: relative;
-}
-
-.qr-pre-btn {
+#myButton {
   display: inline-block;
-  background-color: #4ac3bd;
-  border: 2px solid #4ac3bd;
+  background-color: #1db4ac;
+  border: 2px solid #1db4ac;
   color: #fff;
   text-decoration: none;
   text-align: center;
@@ -18,38 +14,18 @@
   line-height: 1.5;
 }
 
-.qr-pre-img {
-  display: none;
-  position: absolute;
-  padding: 10px 0 7px 0;
-  top: 25px;
-  left: 0;
-  z-index: 100;
-  box-sizing: border-box;
-  animation: show 1s;
+#myButton:hover {
+  background-color: #4ac3bd;
+  border: 2px solid #4ac3bd;
 }
 
-.qr-pre-img-pic {
-  padding: 8px 16px;
-  box-shadow: 0 0 10px rgb(117, 117, 117);
+#openTextDom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.qr-pre-img-triangle {
-  position: absolute;
-  top: 2px;
-  left: 20px;
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: 8px solid #fff;
-}
-
-@keyframes show {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+#openTextDom a {
+  text-decoration: none;
+  color: #1db4ac;
 }
