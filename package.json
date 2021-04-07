@@ -1,6 +1,6 @@
 {
   "name": "@gdyfe/btn-qrcode",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/btnqrcode.js",
   "license": "MIT",
   "author": "shelter01 <824586637@qq.com>",
