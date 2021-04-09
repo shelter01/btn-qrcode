@@ -1,4 +1,4 @@
-#myButton {
+[class^="btnqrcode-button"] {
   display: inline-block;
   background-color: #1db4ac;
   border: 2px solid #1db4ac;
@@ -14,18 +14,110 @@
   line-height: 1.5;
 }
 
-#myButton:hover {
+[class^="btnqrcode-button"]:hover {
   background-color: #4ac3bd;
   border: 2px solid #4ac3bd;
 }
 
-#openTextDom {
+/* 链接复制flex排版 */
+.btnqrcode-url-text-dom {
+  width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+.btnqrcode-url-text-dom-between {
+  justify-content: space-between;
+}
+.btnqrcode-url-text-dom-around {
   justify-content: space-around;
 }
+.btnqrcode-url-text-dom-left {
+  justify-content: flex-start;
+}
+.btnqrcode-url-text-dom-right {
+  justify-content: flex-end;
+}
+.btnqrcode-url-text-dom-center {
+  justify-content: center;
+}
 
-#openTextDom a {
+.btnqrcode-url-text-dom a {
   text-decoration: none;
+  display: inline-block;
   color: #1db4ac;
+}
+
+/* 按钮样式 */
+.btnqrcode-open-url-text {
+  padding: 3px 7px;
+}
+.btnqrcode-open-url-text-default {
+  border: 0;
+}
+.btnqrcode-open-url-text-default a {
+  color: #1db4ac;
+}
+.btnqrcode-open-url-text-ghost {
+  border: 1px solid #1db4ac;
+  border-radius: 3px;
+}
+.btnqrcode-open-url-text-ghost a {
+  color: #1db4ac;
+}
+.btnqrcode-open-url-text-success {
+  border: 1px solid #1db4ac;
+  border-radius: 3px;
+  background-color: #1db4ac;
+}
+.btnqrcode-open-url-text-success a {
+  color: #fff;
+}
+.btnqrcode-copy-url-text {
+  padding: 3px 7px;
+}
+.btnqrcode-copy-url-text-default {
+  border: 0;
+}
+.btnqrcode-copy-url-text-default a {
+  color: #1db4ac;
+}
+.btnqrcode-copy-url-text-ghost {
+  border: 1px solid #1db4ac;
+  border-radius: 3px;
+}
+.btnqrcode-copy-url-text-ghost a {
+  color: #1db4ac;
+}
+.btnqrcode-copy-url-text-success {
+  border: 1px solid #1db4ac;
+  border-radius: 3px;
+  background-color: #1db4ac;
+}
+.btnqrcode-copy-url-text-success a {
+  color: #fff;
+}
+
+.btnqrcode-input-dom {
+  text-align: center;
+  border-radius: 3px;
+  border: 1px solid #dcdee2;
+  color: #666;
+  padding: 4px 7px;
+  margin: 5px 0;
+}
+
+.btnqrcode-input-dom:focus{
+  border-color: #1db4ac;
+  outline: 0;
+}
+
+.tippy-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 9px;
 }
