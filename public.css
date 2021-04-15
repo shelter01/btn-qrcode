@@ -1,4 +1,4 @@
-[class^="btnqrcode-button"] {
+/* [class^="btnqrcode-button"] {
   display: inline-block;
   background-color: #1db4ac;
   border: 2px solid #1db4ac;
@@ -17,7 +17,7 @@
 [class^="btnqrcode-button"]:hover {
   background-color: #4ac3bd;
   border: 2px solid #4ac3bd;
-}
+} */
 
 /* 链接复制flex排版 */
 .btnqrcode-url-text-dom {
@@ -101,6 +101,7 @@
 }
 
 .btnqrcode-input-dom {
+  width: 100%;
   text-align: center;
   border-radius: 3px;
   border: 1px solid #dcdee2;

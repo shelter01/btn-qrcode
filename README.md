@@ -5,7 +5,7 @@
 ```
 yarn add @gdyfe/btn-qrcode
 ```
-or
+
 ```
 npm install --save @gdyfe/btn-qrcode
 ```
@@ -13,40 +13,35 @@ npm install --save @gdyfe/btn-qrcode
 ## Usage
 
 ```js
-import '@gdyfe/btn-qrcode'
-or
-import '@gdyfe/btn-qrcode/dist/btnqrcode.js'
+import BtnQRCode from '@gdyfe/btn-qrcode'
 ```
 
 ```html
-<html>
-  <body>
-    <div id="btn-qrcode"></div>
-  </body>
-</html>
+// 自定义属性data-btnqrcode存放url
+<button data-btnqrcode="https://www.baidu.com">预览</button>
 ```
 
 ```js
-const btn = new  new BtnQRCode('btn-qrcode', options)
-btn.init()
+const btnqrcode = new BtnQRCode(options)
+// 数据更新时调用
+btnqrcode.init()
 ```
 
 ## Options
-|属性|说明|类型|必填|参考值|默认值|
-| :--: | :--: | :--: | :--: | :--: | :--: |
-|url|需转成二维码的url|string|是|1|-|
-|btnText|按钮显示文字|string|否||预览|
-|text|二维码下方文字链接|array|否||' '|
-
-## Demo
 ```js
-const btn = new BtnQRCode('btn-qrcode', {
-  url: 'https://www.baidu.com',
-  btnText: '预览',
-  text: [
-    ['打开', 'https://www.baidu.com'],
-    ['链接', 'https://www.baidu.com'],
-  ],
+const btnqrcode = new BtnQRCode({
+  openUrlText: '打开链接', // 选填，设置打开链接按钮与文字
+  openUrlType: 'default', // 选填，打开按钮样式，（success/ghost/<默认值>default）
+  copyUrlText: '一键复制', // 选填，设置复制链接按钮与文字
+  copyUrlType: 'default', // 选填，复制按钮样式，（success/ghost/<默认值>default）
+  urlTextPosTB: 'bottom', // 选填，打开与复制按钮位于二维码方位，（top/<默认值>bottom）
+  urlTextPosLR: 'between', // 选填，打开与复制按钮排版格式，（around/left/right/center/<默认值>between）
+  noticeText: '提示语句', // 选填，提示语句
+  noticeTextColor: '#666', // 选填，提示语句颜色设置
+  isShowInput: true, // 选填，是否显示input输入框
 })
-btn.init()
+
+btnqrcode.onCopy = () => {
+  // 复制完成时自定义操作，如复制成功通知
+}
 ```

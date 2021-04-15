@@ -11,15 +11,13 @@
     </style>
   </head>
   <body>
-    <div class="test" data-btnqrcode="https://www.baidu.com"></div>
-    <div class="test" data-btnqrcode="https://www.zhihu.com"></div>
+    <div data-btnqrcode="https://www.baidu.com">预览</div>
+    <div data-btnqrcode="https://www.zhihu.com">预览</div>
     <script type="module">
-      // import '../node_modules/@gdyfe/btn-qrcode/dist/btnqrcode.js'
-      import '../dist/btnqrcode.js'
+      import BtnQRCode from '../dist/btnqrcode.js'
+      // import BtnQRCode from '../index.js'
       var btn = new BtnQRCode({
-        trigger: '.test',
         isShowInput: true,
-        btnText: '预览',
         openUrlText: '打开链接',
         // openUrlType: 'ghost',
         copyUrlText: '一键复制',
@@ -29,6 +27,20 @@
         // noticeText: '通过手机预览'
       })
       btn.init()
+
+      // var bodyTest = document.body
+      // var timer = setInterval(() => {
+      //   if (document.querySelector('[data-btnqrcode]')) {
+      //     console.log(1)
+      //     clearInterval(timer)
+      //   }
+      // }, 100)
+      // bodyTest.addEventListener('mouseover', e => {
+      //   console.log(e.target.dataset['btnqrcode'], 111)
+        // if(e.target.dataset[data-btnqrcode]) {
+        //   console.log(e.target.dataset, 111)
+        // }
+      // })
     </script>
   </body>
 </html>
