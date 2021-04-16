@@ -9,11 +9,13 @@ import ClipboardJS from 'clipboard'
 export default class BtnQRCode {
   constructor(options = {}) {
     this.options = options
+    this.clipboard = null
   }
 
   onCopy() {}
 
   init() {
+    console.log(111)
     const {
       isShowInput = false,
       openUrlText = '',
@@ -120,9 +122,13 @@ export default class BtnQRCode {
 
           index++
         }
-
-        const clipboard = new ClipboardJS('.btnqrcode-copy-url-text')
-        clipboard.on('success', () => {
+        
+        // 避免多次出发复制成功事件
+        if (this.clipboard) {
+          this.clipboard.destroy()
+        }
+        this.clipboard = new ClipboardJS('.btnqrcode-copy-url-text')
+        this.clipboard.on('success', () => {
           this.onCopy()
         })
       }
