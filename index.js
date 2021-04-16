@@ -15,7 +15,6 @@ export default class BtnQRCode {
   onCopy() {}
 
   init() {
-    console.log(111)
     const {
       isShowInput = false,
       openUrlText = '',
