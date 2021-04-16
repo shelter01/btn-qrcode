@@ -23,7 +23,7 @@ import BtnQRCode from '@gdyfe/btn-qrcode'
 
 ```js
 const btnqrcode = new BtnQRCode(options)
-// 数据更新时调用
+// 数据更新时调用（如页码更新dom需重新调用）
 btnqrcode.init()
 ```
 
