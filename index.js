@@ -25,6 +25,7 @@ export default class BtnQRCode {
       urlTextPosLR = 'between',
       noticeText = '',
       noticeTextColor = '',
+      boundaryDom = '' // 边界元素定位
     } = this.options
 
     const timer = setInterval(async () => {
@@ -82,15 +83,32 @@ export default class BtnQRCode {
           await QRCode.toDataURL(url)
             .then((url) => {
               imgDom = `<img class="btnqrcode-qrcode" src=${url} />`
-
+              
               // tippy(`.btnqrcode-button-${index}`, {
               tippy(`[data-btnqrcode-btn${index}]`, {
                 theme: 'light',
                 allowHTML: true,
                 duration: [500, 500],
-                appendTo: 'parent',
+                // appendTo: document.querySelector('.center-content'),
                 // 调试专用
                 // trigger: 'click',
+
+                popperOptions: {
+                  modifiers: [
+                    {
+                      name: 'flip',
+                      options: {
+                        boundary: boundaryDom ? document.querySelector(boundaryDom) : 'clippingParents',
+                      },
+                    },
+                    {
+                      name: 'preventOverflow',
+                      options: {
+                        boundary: boundaryDom ? document.querySelector(boundaryDom) : 'clippingParents',
+                      },
+                    },
+                  ],
+                },
 
                 // 气泡框内mouseenter不消失
                 interactive: true,
