@@ -10,11 +10,20 @@ export default class BtnQRCode {
   constructor(options = {}) {
     this.options = options
     this.clipboard = null
+    this.instances = []
   }
 
   onCopy() {}
 
   init() {
+    // 清除实例
+    if (this.instances.length) {
+      this.instances.forEach((v) => {
+        v.destroy()
+      })
+      this.instances = []
+    }
+
     const {
       isShowInput = false,
       openUrlText = '',
@@ -25,7 +34,7 @@ export default class BtnQRCode {
       urlTextPosLR = 'between',
       noticeText = '',
       noticeTextColor = '',
-      boundaryDom = '' // 边界元素定位
+      boundaryDom = '', // 边界元素定位
     } = this.options
 
     const timer = setInterval(async () => {
@@ -83,9 +92,9 @@ export default class BtnQRCode {
           await QRCode.toDataURL(url)
             .then((url) => {
               imgDom = `<img class="btnqrcode-qrcode" src=${url} />`
-              
+
               // tippy(`.btnqrcode-button-${index}`, {
-              tippy(`[data-btnqrcode-btn${index}]`, {
+              const instance = tippy(`[data-btnqrcode-btn${index}]`, {
                 theme: 'light',
                 allowHTML: true,
                 duration: [500, 500],
@@ -98,13 +107,17 @@ export default class BtnQRCode {
                     {
                       name: 'flip',
                       options: {
-                        boundary: boundaryDom ? document.querySelector(boundaryDom) : 'clippingParents',
+                        boundary: boundaryDom
+                          ? document.querySelector(boundaryDom)
+                          : 'clippingParents',
                       },
                     },
                     {
                       name: 'preventOverflow',
                       options: {
-                        boundary: boundaryDom ? document.querySelector(boundaryDom) : 'clippingParents',
+                        boundary: boundaryDom
+                          ? document.querySelector(boundaryDom)
+                          : 'clippingParents',
                       },
                     },
                   ],
@@ -117,6 +130,7 @@ export default class BtnQRCode {
                     ? inputDom + imgDom + noticeDom + urlTextDom
                     : inputDom + urlTextDom + imgDom + noticeDom,
               })
+              this.instances.push(instance[0])
             })
             .catch((err) => {
               console.error(err)
@@ -139,7 +153,7 @@ export default class BtnQRCode {
 
           index++
         }
-        
+
         // 避免多次出发复制成功事件
         if (this.clipboard) {
           this.clipboard.destroy()
