@@ -10,12 +10,14 @@ export default class BtnQRCode {
   constructor(options = {}) {
     this.options = options
     this.clipboard = null
-    this.instances = []
+    this.instances = [] // 用作销毁实例
+    this.isBreak = false // 用作中断实例创建
   }
 
   onCopy() {}
 
   init() {
+    this.isBreak = true
     // 清除实例
     if (this.instances.length) {
       this.instances.forEach((v) => {
@@ -47,6 +49,7 @@ export default class BtnQRCode {
 
         let index = 0
 
+        this.isBreak = false
         while (index < nodeList.length) {
           const item = nodeList[index]
           // item.innerHTML = `<button class="btnqrcode-button-${index}"><span>${btnText}</span></button>`
@@ -88,49 +91,57 @@ export default class BtnQRCode {
             urlTextDom = `<div class="btnqrcode-url-text-dom btnqrcode-url-text-dom-${urlTextPosLR}">${textTemp}</div>`
           }
 
+          // 连点init
+          if (this.isBreak) {
+            break
+          }
+
           // 链接转二维码
           await QRCode.toDataURL(url)
             .then((url) => {
               imgDom = `<img class="btnqrcode-qrcode" src=${url} />`
 
-              // tippy(`.btnqrcode-button-${index}`, {
-              const instance = tippy(`[data-btnqrcode-btn${index}]`, {
-                theme: 'light',
-                allowHTML: true,
-                duration: [500, 500],
-                // appendTo: document.querySelector('.center-content'),
-                // 调试专用
-                // trigger: 'click',
+              // 及时中断创建
+              if (!this.isBreak) {
+                const instance = tippy(`[data-btnqrcode-btn${index}]`, {
+                  theme: 'light',
+                  allowHTML: true,
+                  duration: [500, 500],
+                  // appendTo: document.querySelector('.center-content'),
+                  // 调试专用
+                  // trigger: 'click',
 
-                popperOptions: {
-                  modifiers: [
-                    {
-                      name: 'flip',
-                      options: {
-                        boundary: boundaryDom
-                          ? document.querySelector(boundaryDom)
-                          : 'clippingParents',
+                  popperOptions: {
+                    modifiers: [
+                      {
+                        name: 'flip',
+                        options: {
+                          boundary: boundaryDom
+                            ? document.querySelector(boundaryDom)
+                            : 'clippingParents',
+                        },
                       },
-                    },
-                    {
-                      name: 'preventOverflow',
-                      options: {
-                        boundary: boundaryDom
-                          ? document.querySelector(boundaryDom)
-                          : 'clippingParents',
+                      {
+                        name: 'preventOverflow',
+                        options: {
+                          boundary: boundaryDom
+                            ? document.querySelector(boundaryDom)
+                            : 'clippingParents',
+                        },
                       },
-                    },
-                  ],
-                },
+                    ],
+                  },
 
-                // 气泡框内mouseenter不消失
-                interactive: true,
-                content:
-                  urlTextPosTB === 'bottom'
-                    ? inputDom + imgDom + noticeDom + urlTextDom
-                    : inputDom + urlTextDom + imgDom + noticeDom,
-              })
-              this.instances.push(instance[0])
+                  // 气泡框内mouseenter不消失
+                  interactive: true,
+                  content:
+                    urlTextPosTB === 'bottom'
+                      ? inputDom + imgDom + noticeDom + urlTextDom
+                      : inputDom + urlTextDom + imgDom + noticeDom,
+                })
+                // 保存每个tippy实例
+                this.instances.push(instance[0])
+              }
             })
             .catch((err) => {
               console.error(err)
