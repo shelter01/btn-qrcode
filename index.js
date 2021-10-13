@@ -1,4 +1,3 @@
-/* eslint-disable */
 import QRCode from 'qrcode'
 import tippy from 'tippy.js'
 import 'tippy.js/dist/tippy.css'
@@ -8,16 +7,17 @@ import ClipboardJS from 'clipboard'
 
 export default class BtnQRCode {
   constructor(options = {}) {
+    this.timer = null // 获取dom时用
     this.options = options
     this.clipboard = null
     this.instances = [] // 用作销毁实例
-    this.isBreak = false // 用作中断实例创建
   }
 
+  // 自定义复制后操作
   onCopy() {}
 
   init() {
-    this.isBreak = true
+    clearInterval(this.timer)
     // 清除实例
     if (this.instances.length) {
       this.instances.forEach((v) => {
@@ -37,11 +37,13 @@ export default class BtnQRCode {
       noticeText = '',
       noticeTextColor = '',
       boundaryDom = '', // 边界元素定位
+      placement = 'bottom'
     } = this.options
 
-    const timer = setInterval(async () => {
+    // 拿到dom后中断interval
+    this.timer = setInterval(async () => {
       if (document.querySelector('[data-btnqrcode]')) {
-        clearInterval(timer)
+        clearInterval(this.timer)
 
         const nodeList = Array.from(
           document.querySelectorAll('[data-btnqrcode]')
@@ -49,7 +51,6 @@ export default class BtnQRCode {
 
         let index = 0
 
-        this.isBreak = false
         while (index < nodeList.length) {
           const item = nodeList[index]
           // item.innerHTML = `<button class="btnqrcode-button-${index}"><span>${btnText}</span></button>`
@@ -67,7 +68,8 @@ export default class BtnQRCode {
           if (isShowInput) {
             inputDom = `<input class="btnqrcode-input-dom" readonly="readonly" value=${url} />`
           }
-
+          
+          // 提示文字及颜色配置
           if (noticeText) {
             let noticeColorStyle
             if (noticeTextColor) {
@@ -91,54 +93,51 @@ export default class BtnQRCode {
             urlTextDom = `<div class="btnqrcode-url-text-dom btnqrcode-url-text-dom-${urlTextPosLR}">${textTemp}</div>`
           }
 
-          // 连点init
-          if (this.isBreak) {
-            break
-          }
-
           // 链接转二维码
           await QRCode.toDataURL(url)
             .then((url) => {
               imgDom = `<img class="btnqrcode-qrcode" src=${url} />`
 
-              // 及时中断创建
-              if (!this.isBreak) {
-                const instance = tippy(`[data-btnqrcode-btn${index}]`, {
-                  theme: 'light',
-                  allowHTML: true,
-                  duration: [500, 500],
-                  // appendTo: document.querySelector('.center-content'),
-                  // 调试专用
-                  // trigger: 'click',
+              const instance = tippy(`[data-btnqrcode-btn${index}]`, {
+                placement: placement,
+                theme: 'light',
+                allowHTML: true,
+                duration: [500, 500],
+                // appendTo: document.querySelector('.center-content'),
+                // 调试专用
+                // trigger: 'click',
 
-                  popperOptions: {
-                    modifiers: [
-                      {
-                        name: 'flip',
-                        options: {
-                          boundary: boundaryDom
-                            ? document.querySelector(boundaryDom)
-                            : 'clippingParents',
-                        },
+                popperOptions: {
+                  modifiers: [
+                    {
+                      name: 'flip',
+                      options: {
+                        boundary: boundaryDom
+                          ? document.querySelector(boundaryDom)
+                          : 'clippingParents',
                       },
-                      {
-                        name: 'preventOverflow',
-                        options: {
-                          boundary: boundaryDom
-                            ? document.querySelector(boundaryDom)
-                            : 'clippingParents',
-                        },
+                    },
+                    {
+                      name: 'preventOverflow',
+                      options: {
+                        boundary: boundaryDom
+                          ? document.querySelector(boundaryDom)
+                          : 'clippingParents',
                       },
-                    ],
-                  },
+                    },
+                  ],
+                },
 
-                  // 气泡框内mouseenter不消失
-                  interactive: true,
-                  content:
-                    urlTextPosTB === 'bottom'
-                      ? inputDom + imgDom + noticeDom + urlTextDom
-                      : inputDom + urlTextDom + imgDom + noticeDom,
-                })
+                // 气泡框内mouseenter不消失
+                interactive: true,
+                content:
+                  urlTextPosTB === 'bottom'
+                    ? inputDom + imgDom + noticeDom + urlTextDom
+                    : inputDom + urlTextDom + imgDom + noticeDom,
+              })
+
+              // 为空不加，异常处理
+              if (instance && instance.length) {
                 // 保存每个tippy实例
                 this.instances.push(instance[0])
               }
@@ -147,7 +146,7 @@ export default class BtnQRCode {
               console.error(err)
             })
 
-          // gdyfe ivu-btn:last-child marginRight: 0 private
+          // gdyfe ivu-btn:last-child marginRight: 0 private特殊样式
           if (
             Array.from(item.parentElement.lastElementChild.classList).includes(
               'ivu-btn'

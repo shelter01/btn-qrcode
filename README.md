@@ -40,6 +40,7 @@ const btnqrcode = new BtnQRCode({
   noticeTextColor: '#666', // 选填，提示语句颜色设置
   isShowInput: true, // 选填，是否显示input输入框
   boundaryDom: '.content' // 选填，是否指定定位边界dom元素选择器
+  placement: 'bottom' //选填，默认bottom
 })
 
 btnqrcode.onCopy = () => {
